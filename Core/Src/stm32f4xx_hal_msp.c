@@ -20,63 +20,100 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-/* USER CODE BEGIN Includes */
-
-/* USER CODE END Includes */
-
-/* Private typedef -----------------------------------------------------------*/
-/* USER CODE BEGIN TD */
-
-/* USER CODE END TD */
-
-/* Private define ------------------------------------------------------------*/
-/* USER CODE BEGIN Define */
-
-/* USER CODE END Define */
-
-/* Private macro -------------------------------------------------------------*/
-/* USER CODE BEGIN Macro */
-
-/* USER CODE END Macro */
-
-/* Private variables ---------------------------------------------------------*/
-/* USER CODE BEGIN PV */
-
-/* USER CODE END PV */
-
-/* Private function prototypes -----------------------------------------------*/
-/* USER CODE BEGIN PFP */
-
-/* USER CODE END PFP */
-
-/* External functions --------------------------------------------------------*/
-/* USER CODE BEGIN ExternalFunctions */
-
-/* USER CODE END ExternalFunctions */
-
-/* USER CODE BEGIN 0 */
-
-/* USER CODE END 0 */
 /**
   * Initializes the Global MSP.
   */
 void HAL_MspInit(void)
 {
-
-  /* USER CODE BEGIN MspInit 0 */
-
-  /* USER CODE END MspInit 0 */
-
   __HAL_RCC_SYSCFG_CLK_ENABLE();
   __HAL_RCC_PWR_CLK_ENABLE();
-
-  /* System interrupt init*/
-
-  /* USER CODE BEGIN MspInit 1 */
-
-  /* USER CODE END MspInit 1 */
 }
 
-/* USER CODE BEGIN 1 */
+/**
+ * UART MspInit
+ */
+void HAL_UART_MspInit(UART_HandleTypeDef* huart)
+{
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
+  switch ((uint32_t)(huart->Instance))
+  {
+  case (uint32_t)USART1:
+    __HAL_RCC_GPIOB_CLK_ENABLE();
+    __HAL_RCC_USART1_CLK_ENABLE();
+    GPIO_InitStruct.Pin = GPIO_PIN_7;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+    GPIO_InitStruct.Alternate = GPIO_AF7_USART1;
+    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+    HAL_NVIC_SetPriority(USART1_IRQn, 8, 0);
+    HAL_NVIC_EnableIRQ(USART1_IRQn);
+    break;
 
-/* USER CODE END 1 */
+  case (uint32_t)USART2:
+    __HAL_RCC_GPIOD_CLK_ENABLE();
+    __HAL_RCC_USART2_CLK_ENABLE();
+    GPIO_InitStruct.Pin = GPIO_PIN_5 | GPIO_PIN_6;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+    GPIO_InitStruct.Alternate = GPIO_AF7_USART2;
+    HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+    HAL_NVIC_SetPriority(USART2_IRQn, 2, 0);
+    HAL_NVIC_EnableIRQ(USART2_IRQn);
+    break;
+
+  case (uint32_t)USART3:
+    __HAL_RCC_GPIOD_CLK_ENABLE();
+    __HAL_RCC_USART3_CLK_ENABLE();
+    GPIO_InitStruct.Pin = GPIO_PIN_8 | GPIO_PIN_9;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+    GPIO_InitStruct.Alternate = GPIO_AF7_USART3;
+    HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+    HAL_NVIC_SetPriority(USART3_IRQn, 2, 0);
+    HAL_NVIC_EnableIRQ(USART3_IRQn);
+    break;
+
+  case (uint32_t)USART6:
+    __HAL_RCC_GPIOG_CLK_ENABLE();
+    __HAL_RCC_USART6_CLK_ENABLE();
+    GPIO_InitStruct.Pin = GPIO_PIN_9 | GPIO_PIN_14;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+    GPIO_InitStruct.Alternate = GPIO_AF8_USART6;
+    HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
+    HAL_NVIC_SetPriority(USART6_IRQn, 2, 0);
+    HAL_NVIC_EnableIRQ(USART6_IRQn);
+    break;
+
+  case (uint32_t)UART7:
+    __HAL_RCC_GPIOE_CLK_ENABLE();
+    __HAL_RCC_UART7_CLK_ENABLE();
+    GPIO_InitStruct.Pin = GPIO_PIN_7 | GPIO_PIN_8;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+    GPIO_InitStruct.Alternate = GPIO_AF8_UART7;
+    HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
+    HAL_NVIC_SetPriority(UART7_IRQn, 2, 0);
+    HAL_NVIC_EnableIRQ(UART7_IRQn);
+    break;
+
+  case (uint32_t)UART8:
+    __HAL_RCC_GPIOE_CLK_ENABLE();
+    __HAL_RCC_UART8_CLK_ENABLE();
+    GPIO_InitStruct.Pin = GPIO_PIN_0 | GPIO_PIN_1;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+    GPIO_InitStruct.Alternate = GPIO_AF8_UART8;
+    HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
+    HAL_NVIC_SetPriority(UART8_IRQn, 2, 0);
+    HAL_NVIC_EnableIRQ(UART8_IRQn);
+    break;
+
+  }
+}

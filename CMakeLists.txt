@@ -42,6 +42,7 @@ target_include_directories(freertos_config INTERFACE ${CMAKE_SOURCE_DIR}/Core/In
 # Core project settings
 project(${CMAKE_PROJECT_NAME})
 message("Build type: " ${CMAKE_BUILD_TYPE})
+message("CXX_std: " ${CMAKE_CXX_STANDARD})
 
 # Enable CMake support for ASM and C languages
 enable_language(C ASM CXX)
@@ -52,7 +53,14 @@ add_executable(${CMAKE_PROJECT_NAME}
         Drivers/Peripherals/Inc/CAN.h
         Drivers/Peripherals/Inc/DMA.h
         Drivers/Peripherals/Inc/TIM.h
-        Drivers/Peripherals/Inc/IIC.h)
+        Drivers/Peripherals/Inc/IIC.h
+        Drivers/Peripherals/Src/USART.cpp)
+
+#
+file(GLOB_RECURSE SOURCES
+        ${CMAKE_SOURCE_DIR}/Drivers/APP/Src/*.cpp
+        ${CMAKE_SOURCE_DIR}/Drivers/Peripherals/Src/*.cpp
+)
 
 # Add STM32CubeMX generated sources
 add_subdirectory(cmake/stm32cubemx)
@@ -67,11 +75,15 @@ target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
 
 # Add sources to executable
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
+        ${SOURCES}
     # Add user sources here
 )
 
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
+        ${CMAKE_SOURCE_DIR}/Drivers/APP/Inc
+        ${CMAKE_SOURCE_DIR}/Drivers/Peripherals/Inc
+        ${CMAKE_SOURCE_DIR}/Drivers/STM32F4xx_HAL_Driver/Inc
     # Add user defined include paths
 )
 
