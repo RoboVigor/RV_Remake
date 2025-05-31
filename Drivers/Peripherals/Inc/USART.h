@@ -1,11 +1,11 @@
 //
 // Created by Admin on 5/26/2025.
 //
-#include  "stm32f4xx_hal.h"
-#include "utility"
 
 #ifndef USART_H
 #define USART_H
+#include  "stm32f4xx_hal.h"
+#include "utility"
 
 namespace Drivers::Peripherals
 {
