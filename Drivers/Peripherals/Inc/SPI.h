@@ -16,17 +16,17 @@ namespace Drivers::Peripherals
     struct SPIConfig
     {
       SPI_TypeDef* SPIx;
-      uint32_t Mode;
-      uint32_t Direction;
-      uint32_t DataSize;
-      uint32_t CLKPolarity;
-      uint32_t CLKPhase;
-      uint32_t NSS;
-      uint32_t BaudRatePrescaler;
-      uint32_t FirstBit;
-      uint32_t TIMode;
-      uint32_t CRCCalculation;
-      uint32_t CRCPolynomial;
+      uint32_t Mode = SPI_MODE_MASTER;
+      uint32_t Direction = SPI_DIRECTION_2LINES;
+      uint32_t DataSize = SPI_DATASIZE_8BIT;
+      uint32_t CLKPolarity = SPI_POLARITY_LOW;
+      uint32_t CLKPhase = SPI_PHASE_1EDGE;
+      uint32_t NSS = SPI_NSS_HARD_OUTPUT;
+      uint32_t BaudRatePrescaler = SPI_BAUDRATEPRESCALER_64;
+      uint32_t FirstBit = SPI_FIRSTBIT_MSB;
+      uint32_t TIMode = SPI_TIMODE_DISABLE;
+      uint32_t CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+      uint32_t CRCPolynomial = NULL;
       uint32_t interruptFlag;
     };
 
