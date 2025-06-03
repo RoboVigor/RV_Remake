@@ -27,22 +27,19 @@ namespace Drivers::Peripherals
 
   private:
     UsartConfig usartConfig;
-    void init();
     static void globalInitCallback_Default(void);
 
   public:
     /*
      * class structure func
      */
-    USART(
-      UsartConfig cfg
-      );
+    explicit USART(UsartConfig cfg);
     /*
      * func
      */
     static void globalInit(void);
     static inline void (*globalInitCallback)(void) = globalInitCallback_Default;
-
+    void init();
 
   };
 }

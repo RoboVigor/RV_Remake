@@ -31,17 +31,19 @@ namespace Drivers::Peripherals
     };
 
     SPIConfig spiConfig;
-    void init();
+
     static void globalInitCallback_Default();
-    void transmit(uint8_t *data, uint16_t length);
-    void recieve(uint8_t *buffer, uint16_t length);
-    void transmit_recive(uint8_t *data, uint8_t *buffer, uint16_t TXlength, uint16_t RXlength, uint8_t RXDMAEnabled);
+
   public:
-    SPI(
+    explicit SPI(
       SPIConfig spiConfig
       );
     static void globalInit();
     static inline void (*globalInitCallback)() = globalInitCallback_Default;
+    void transmit(uint8_t *data, uint16_t length);
+    void recieve(uint8_t *buffer, uint16_t length);
+    void transmit_recive(uint8_t *data, uint8_t *buffer, uint16_t TXlength, uint16_t RXlength, uint8_t RXDMAEnabled);
+    void init();
   };
 }
 

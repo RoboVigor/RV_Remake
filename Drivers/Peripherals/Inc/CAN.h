@@ -44,18 +44,18 @@ namespace Drivers::Peripherals
     CANConfig canConfig;
     FilterConfig filterConfig;
 
-    void init();
     static void globalInitCallback_Default();
-    void canSend(uint16_t stdID, uint8_t data[8]);
-    void canSendMessage(uint16_t stdID, uint8_t *sendBuffer, uint16_t length);
-    static void canTransmit(CAN_TypeDef* CANx, CAN_TxHeaderTypeDef* canTxData, uint8_t data[8]);
 
     public:
-    CAN(
+    explicit CAN(
       CANConfig canConfig, FilterConfig filterConfig
       );
     static void globalInit();
     static inline void (* globalInitCallback) () = globalInitCallback_Default;
+    void canSend(uint16_t stdID, uint8_t data[8]);
+    void canSendMessage(uint16_t stdID, uint8_t *sendBuffer, uint16_t length);
+    static void canTransmit(CAN_TypeDef* CANx, CAN_TxHeaderTypeDef* canTxData, uint8_t data[8]);
+    void init();
 
   };
 }

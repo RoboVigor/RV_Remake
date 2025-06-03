@@ -38,16 +38,16 @@ namespace Drivers::Peripherals
 
     TIM_HandleTypeDef timHandle;
 
-    void PWMInit();
-    void PWMConfig(uint32_t channel);
     static void globalInitCallBack_Default();
-    void setDuty(uint32_t channel, uint8_t duty);
-    void PWMStart(uint32_t channel);
 
   public:
-    TIM(BaseConfig baseConfig, OCConfig ocConfig);
+    explicit TIM(BaseConfig baseConfig, OCConfig ocConfig);
     static void globalInit();
     static inline void (*globalInitCallback)() = globalInitCallBack_Default;
+    void setDuty(uint32_t channel, uint8_t duty);
+    void PWMStart(uint32_t channel);
+    void PWMInit();
+    void PWMConfig(uint32_t channel);
   };
 }
 #endif //TIM_H
