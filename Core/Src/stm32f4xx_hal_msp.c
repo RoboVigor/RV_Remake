@@ -153,3 +153,21 @@ void HAL_CAN_MspInit(CAN_HandleTypeDef* hcan)
     break;
   }
 }
+
+/*
+ *SPI MspInit
+ */
+
+void HAL_SPI_MspInit(SPI_HandleTypeDef* hspi)
+{
+  GPIO_InitTypeDef GPIO_InitStruct;
+  __HAL_RCC_GPIOF_CLK_ENABLE();
+  __HAL_RCC_SPI5_CLK_ENABLE();
+  GPIO_InitStruct.Pin = GPIO_PIN_6 | GPIO_PIN_7 | GPIO_PIN_8 | GPIO_PIN_9;
+  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+  GPIO_InitStruct.Alternate = GPIO_AF5_SPI5;
+  HAL_GPIO_Init(GPIOF, &GPIO_InitStruct);
+
+}

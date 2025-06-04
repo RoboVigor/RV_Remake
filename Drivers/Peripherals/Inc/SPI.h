@@ -12,7 +12,7 @@ namespace Drivers::Peripherals
 {
   class SPI
   {
-  private:
+  public:
     struct SPIConfig
     {
       SPI_TypeDef* SPIx;
@@ -29,12 +29,13 @@ namespace Drivers::Peripherals
       uint32_t CRCPolynomial = NULL;
       uint32_t interruptFlag;
     };
-
+  private:
     SPIConfig spiConfig;
 
     static void globalInitCallback_Default();
 
   public:
+    SPI();
     explicit SPI(
       SPIConfig spiConfig
       );

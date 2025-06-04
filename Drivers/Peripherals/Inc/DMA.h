@@ -10,7 +10,7 @@ namespace Drivers::Peripherals
 {
   class DMA
   {
-  private:
+  public:
     struct DMAConfig
     {
       DMA_Stream_TypeDef* DMAx_Streamx;
@@ -28,7 +28,7 @@ namespace Drivers::Peripherals
       uint32_t PeriphBurst;
       uint32_t interruptFlag;
     };
-
+  private:
     DMAConfig dmaConfig;
     static void globalInitCallback_Default();
 

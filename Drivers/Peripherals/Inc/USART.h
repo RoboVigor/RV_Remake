@@ -12,7 +12,7 @@ namespace Drivers::Peripherals
 
   class USART
   {
-  private: struct UsartConfig
+  public: struct UsartConfig
     {
       USART_TypeDef* USARTx;
       uint32_t BaudRate;

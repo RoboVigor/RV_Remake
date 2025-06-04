@@ -9,7 +9,7 @@ namespace Drivers::Peripherals
 {
   class CAN
   {
-    private:
+    public:
     struct CANConfig
     {
       CAN_TypeDef* CANx;
@@ -40,7 +40,7 @@ namespace Drivers::Peripherals
       uint32_t FilterActivation;
       uint32_t SlaveStartFilterBank;
     };
-
+  private:
     CANConfig canConfig;
     FilterConfig filterConfig;
 

@@ -10,7 +10,7 @@ namespace Drivers::Peripherals
 {
   class TIM
   {
-  private:
+  public:
     struct BaseConfig
     {
       TIM_TypeDef* TIMx;
@@ -32,7 +32,7 @@ namespace Drivers::Peripherals
       uint32_t OCIdleState = TIM_OCIDLESTATE_RESET;
       uint32_t OCNIdleState;
     };
-
+  private:
     BaseConfig baseConfig;
     OCConfig ocConfig;
 

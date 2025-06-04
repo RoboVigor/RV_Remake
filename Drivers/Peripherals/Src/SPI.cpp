@@ -11,6 +11,12 @@
 namespace Drivers::Peripherals
 {
   extern SPI spi5;
+
+  SPI::SPI()
+  {
+
+  }
+
   SPI::SPI(SPIConfig spiConfig) :
     spiConfig(std::move(spiConfig))
   {

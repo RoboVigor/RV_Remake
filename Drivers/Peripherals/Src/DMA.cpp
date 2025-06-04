@@ -19,10 +19,10 @@ namespace Drivers::Peripherals
   {
     switch (((uint32_t)this->dmaConfig.DMAx_Streamx & 0xFFFFFF00))
     {
-    case (uint32_t)DMA1:
+    case DMA1_BASE:
       __HAL_RCC_DMA1_CLK_ENABLE();
       break;
-    case (uint32_t)DMA2:
+    case DMA2_BASE:
       __HAL_RCC_DMA2_CLK_ENABLE();
       break;
     }

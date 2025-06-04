@@ -11,7 +11,7 @@ cmake_minimum_required(VERSION 3.22)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS ON)
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
@@ -60,6 +60,7 @@ add_executable(${CMAKE_PROJECT_NAME}
 file(GLOB_RECURSE SOURCES
         ${CMAKE_SOURCE_DIR}/Drivers/APP/Src/*.cpp
         ${CMAKE_SOURCE_DIR}/Drivers/Peripherals/Src/*.cpp
+        ${CMAKE_SOURCE_DIR}/Drivers/BSP/Src/*.cpp
 )
 
 # Add STM32CubeMX generated sources
@@ -84,6 +85,7 @@ target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
         ${CMAKE_SOURCE_DIR}/Drivers/APP/Inc
         ${CMAKE_SOURCE_DIR}/Drivers/Peripherals/Inc
         ${CMAKE_SOURCE_DIR}/Drivers/STM32F4xx_HAL_Driver/Inc
+        ${CMAKE_SOURCE_DIR}/Drivers/BSP/Inc
     # Add user defined include paths
 )
 
